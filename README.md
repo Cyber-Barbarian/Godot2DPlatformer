@@ -1,6 +1,7 @@
 # Godot2DPlatformer Godot 4.3
 ## Criando o player
 - Organizamos o projeto e os assets
+- par ficar mais pixelado, em Projeto>project Settings>Renderizando>texturas mudamos de linear para nearest  
 - Criamos uma primeira cena: um simples nó 2d chamado `Game`
 - Criamos uma outra cena chamada `Player`
 - Nela adicionamos um `AnimatedSprite2D`
@@ -36,4 +37,18 @@
 - voltamos ao `tileset`, em `pintar` colocamos o phisics layer sobre os tiles que quisermos
 - se pintarmos algum errado, basta clicar nos tres pontinhos do tile e limpar. aí clica sobre o tile que se quer limpar (atalho c)
 - quando o formato do objeto é bem específico, como a ponte, podemos ajustara física ao formato
-- por fim, para que a câmera acompanhe nosso playe,, vamos mover ela para dentro do player da cena `Game` e ajustar o precision smoothing para 5px. no player da cena `game` ajustei o canvasitem para topLevel, assim o personagem nao fica atrás das árvores. 
+- por fim, para que a câmera acompanhe nosso playe, vamos mover ela para dentro do player da cena `Game` e ajustar o precision smoothing para 5px. Na cena `Player`fui na raiz(Charactebody2D) e  ajustei o canvasitem para o ordering z index 5, assim o personagem nao fica atrás das árvores. 
+
+##Plataformas
+-criaremos uma nova cena do tipo `AnimatedBody2d`
+-adicionaremos um no do tipo Sprite2D e vamos arrastar nosso platforms.png e arrastaremos até o texture do nosso inspector
+- no inspector vamos em region>enabled>edit regione vamos escolher somente a área do sprite que desejamos
+-adicionaremos um no do tipo ColisionShape2D, com área retangular e habilitar one way colision para permitir que entremos por baixo da plataforma 
+-vamos renomear para Platform e abrimos a cena Game 
+- abrimos a cena Game e, do FileSystem, arrastamos nossa plataforma para onde quisermos
+- para uma das plataformas adicionamos um AnimationPlayer para ela se mover e adicionamos uma nova animação platform_move-vertical1
+- Voltamos ao nó da plataforma na cena Game (Platform2, após ter clicado em AnimationPlayer) 
+- Vamos ver que na parte de baixo há um controle de animação no instante 0
+- colocamos a plataforma em uma posição inicial e, no inspetor>Node2D>Transform>Position apertamos a chave(key), 
+- mudamos o controle de animação para o instante 1, mudamos a posição da plataforma e também clicamos na chave
+- no  controle de animação marcamos para auto-reproduzir, ajustamos o tempo e na parte ao lado do tempo colocamos para ir e voltar
