@@ -67,3 +67,22 @@
 - mantendo o script aberto e clicando em nossa area2D (coin) encontramos todos os sinais disponíveis
 - adicionaremos o sinal _on_body_entered e no nosso Player vamos mudar o Layer dele para 2 (Character body 2d, Collision, layer)
 - em Coin alteramos o Mask para 2 e adicionamos a função queue_free() para remover a cena (coin) sempre que nosso personagem colidir com a moeda
+
+## morrendo   
+- Primeiramente em nossa cena `Game` vamos estabelecer um limite inferior para nossa camera
+- clicando no símbolo do esquadro conseguimos ver que a distancia entre nossa linha central e o fundo é de menos de 150px
+- portanto em camera2D>Limit>Bottom colocamos 150a px e smooted ativo. agora a câmera não nos acompanha ao infinito.
+- agora vamos criar uma killzone. vamos criar uma Área2D chamada Killzone com Colision>Mask em 2
+- nela adicionamos um colisionShape 2d do tipo worldBoundary 
+- arrastamos nossa killzone para `Game`
+- em killzone vamos criar um script e um novo no do tipo Timer, configurada para 0,6s e one shot
+- se clicarmos em Timer, arrastarmos para o killzone.gd e soltarmos enquanto seguramos ctrl ele ja traz como varíável
+- em `_on_body_entered`adicionamos um timer.start()
+- clickando em timer, dentro da cena killzone, com o killzone.gd aberto, podemos ver o método `_on_timer_timeout`. Criamos ele
+- quando morrer, queremos recarregar a cena que estiver rodando. Logo na função `_on_timer_timeout` adicionamos `get_tree().reload_current_scene()`
+
+
+##organizando os elementos e expandindo
+- Dentro da nossa cena `game` criamos um nó2d para armazenar as moedas e outro somente para as plataformas, para deixar o código mais organizado
+- ajustamos nosso TileMap em dois layers (Back e mid) e colocamos o back para renderizar primeiro. assim separamos em camadas nosso mapa
+- usamos a ferramenta de retêngulo par pintar múltiplos Yiles de uma vez
