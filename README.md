@@ -52,3 +52,18 @@
 - colocamos a plataforma em uma posição inicial e, no inspetor>Node2D>Transform>Position apertamos a chave(key), 
 - mudamos o controle de animação para o instante 1, mudamos a posição da plataforma e também clicamos na chave
 - no  controle de animação marcamos para auto-reproduzir, ajustamos o tempo e na parte ao lado do tempo colocamos para ir e voltar
+- ajustamos também o temo de  movimento
+
+## itens coletáveis
+- nova cena, um novo no do tipo area2D -> usamos esse quando não queremos que colida com algo, mas detecte a colisão
+- adicionamos um AnimatedSprite2d
+- inspetor>animation>sprite frame> novo sprite frame
+- assim como no personagem, na parte inferior da tela , em `quadros de animação`vou em `adicionar quadros de uma folha de sprite`, o simbolo de quadriculado mas edito para 12X1
+- colocamos a animação para rodar automaticamente
+- adicionamos um colisionshape2d circular
+- arrastamos as moedas para nossa cena `Game` ctrl+d para duplicar
+- para que a moeda se torne coletável devemos adicionar um script
+- para esse script vamos usar o conceito de signal, ou seja, o item só executa algo quando detecta o sinalda presença do player
+- mantendo o script aberto e clicando em nossa area2D (coin) encontramos todos os sinais disponíveis
+- adicionaremos o sinal _on_body_entered e no nosso Player vamos mudar o Layer dele para 2 (Character body 2d, Collision, layer)
+- em Coin alteramos o Mask para 2 e adicionamos a função queue_free() para remover a cena (coin) sempre que nosso personagem colidir com a moeda
