@@ -44,6 +44,7 @@ radius = 4.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
+collision_layer = 2
 script = ExtResource("1_16f04")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://uwp4ltsx4f16"]
+[gd_scene load_steps=10 format=3 uid="uid://uwp4ltsx4f16"]
 
 [ext_resource type="PackedScene" uid="uid://ewm6xyqd7s0s" path="res://scenes/player.tscn" id="1_sa1ma"]
 [ext_resource type="Texture2D" uid="uid://d0q2g65ahgok" path="res://assets/sprites/world_tileset.png" id="2_l6ka8"]
 [ext_resource type="PackedScene" uid="uid://cnmob3soshnd3" path="res://scenes/platform.tscn" id="3_ldg3y"]
+[ext_resource type="PackedScene" uid="uid://bjd8xmslk375s" path="res://scenes/coin.tscn" id="4_1sdbm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ncon"]
 texture = ExtResource("2_l6ka8")
@@ -171,6 +172,21 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 sources/0 = SubResource("TileSetAtlasSource_0ncon")
 
+[sub_resource type="Animation" id="Animation_8c8cl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(167, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_iqr86"]
 resource_name = "platform_move-vertical1"
 length = 2.0
@@ -186,21 +202,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(167, 1), Vector2(167, 55)]
-}
-
-[sub_resource type="Animation" id="Animation_8c8cl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(167, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0redy"]
@@ -235,3 +236,18 @@ libraries = {
 "": SubResource("AnimationLibrary_0redy")
 }
 autoplay = "platform_move-vertical1"
+
+[node name="Area2D" parent="." instance=ExtResource("4_1sdbm")]
+position = Vector2(65, 19)
+
+[node name="Area2D2" parent="." instance=ExtResource("4_1sdbm")]
+position = Vector2(101, 5)
+
+[node name="Area2D3" parent="." instance=ExtResource("4_1sdbm")]
+position = Vector2(133, -19)
+
+[node name="Area2D4" parent="." instance=ExtResource("4_1sdbm")]
+position = Vector2(196, 36)
+
+[node name="Area2D5" parent="." instance=ExtResource("4_1sdbm")]
+position = Vector2(216, -73)
