@@ -86,3 +86,26 @@
 - Dentro da nossa cena `game` criamos um nó2d para armazenar as moedas e outro somente para as plataformas, para deixar o código mais organizado
 - ajustamos nosso TileMap em dois layers (Back e mid) e colocamos o back para renderizar primeiro. assim separamos em camadas nosso mapa
 - usamos a ferramenta de retêngulo par pintar múltiplos Yiles de uma vez
+
+## Inimigo
+- vamos criar uma nova cena como no2d simples e adicionar nele um aniatedSprite2d, incluindo o sprite do inimigo
+- ajustamos para 4x3 e selecionamos a linha do meio para criar a animação idle
+- como já temos uma killzone configurada, podemos clicar com o  direito e duplicar ela, salvando como killzone_enemy.
+- na nova cena killzone_enemy apagamos o colision shape e importamos ela para dentro do enemy_slime_green
+- dentro do enemy_slime_green colocamos outro colision shpe 2d, dessa vez retangular, do tamanho do slime
+- adicionamos o inimigo na cena para testar e vemosque ele morre ao tocar
+- vamos adicionar movmento. podemos fazer isso com animação ou com script. vamos fazer com script.
+- a função _ready() roda uma única vez, quando inicia a cena. _process() roda todo frame. delta é o tempo entre o frame atual e o anterior
+- usar delta é uma boa maneira de compensar o movimento com relação ao framehate
+- criamos uma constante SPEED 60 (60 pixels por segundo) par usar na função de movimentação junto com delta
+- criaremos uma variável para direção, que vai ser sempre 1 ou -1 (mudança de direção)
+- queremos que nosso inimigo se movimente entre 2 paredes e, ao colidir, mude de direção
+- para isso usaremos um detector de colisão chamado raycast2d e vamos trazer ele para o código. nossa direçao mudará de acordo com o sinal dele
+- na hora de trazer os raycast pro script, nao se esquecer de segurar ctrl ao soltar, ai ja cria as variáveis
+- trazer da mesma forma o AnimatedSprite2d pois ela tem a propriedade fliph, que faz com que o objeto gire no seu eixo
+
+## ajustes no player
+- de forma semelhante, pudemos no script do player adicionar o fliph para ele mudar a posição
+- na cena killzone vamos ajustar o script para termos um efeito de morte. 
+- quando a killzone detectar um corpo entrando ela vai alterar as propriedades de tempo, fazendo passar mais devagar. 
+- vamos tb remover a colisão desse body(nosso player) para dar efeito de queda e fazer executar uma animação de morte que criamos no player
