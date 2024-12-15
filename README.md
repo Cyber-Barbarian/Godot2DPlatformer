@@ -105,7 +105,18 @@
 - trazer da mesma forma o AnimatedSprite2d pois ela tem a propriedade fliph, que faz com que o objeto gire no seu eixo
 
 ## ajustes no player
-- de forma semelhante, pudemos no script do player adicionar o fliph para ele mudar a posição
+- de forma semelhante, pusemos no script do player adicionar o fliph para ele mudar a posição
 - na cena killzone vamos ajustar o script para termos um efeito de morte. 
 - quando a killzone detectar um corpo entrando ela vai alterar as propriedades de tempo, fazendo passar mais devagar. 
 - vamos tb remover a colisão desse body(nosso player) para dar efeito de queda e fazer executar uma animação de morte que criamos no player
+
+## mais ajustes
+- vamos mudar um pouco algumas das ações do player. para isso godot usa o conceito de actions
+- project -> project settings -> input map (mapa de entrada): aqui podemos  cadastrar as ações de personagens
+- vamos adicionar 3 ações: jump, move_left e move_right
+- com as ações cadastradas, ao clicar no botão de `+` de cada ação podemos atribuir uma tecla
+- cadastramos a ação de pular e andar
+- em nosso código, vamos substituir os argumentos dos nossos `Inputs` pelas ações cadastradas
+- no nosso player, em `AnimatedSprite2D` vamos adicionar a animação de correr e pular
+- dentro dos gdScript de killzone e player criamos uma forma adequada de renderizar as animações, sem sobreposição
+- em killzone não mais apagamos a colisão, apenas desabilitamos ela
