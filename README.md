@@ -120,3 +120,14 @@
 - no nosso player, em `AnimatedSprite2D` vamos adicionar a animação de correr e pular
 - dentro dos gdScript de killzone e player criamos uma forma adequada de renderizar as animações, sem sobreposição
 - em killzone não mais apagamos a colisão, apenas desabilitamos ela
+
+## Texto
+
+- em godot o texto pode ser inserido pelo nó label. vamos criar um no dentro de label dentro da cena principal
+- no inspetor escrevemos o texto e em control->theme verrides->font & fontsizes podemos importar um fonte e alterar seu tameanho
+- vamos aproveitar para criar nosso score. Scores geralmente são criados dentro de nós específicos, aqui chamados de GameManagers. é simplesmente um nó comum para ter texto e lógica
+- dentro de game manager criamos uma função para somar pontos. 
+- clicando com o direito no no de game manager vamos torna-lo unico "%Acesso nome único", assim quando o importarmos dentro de algum script nçao vai ter um nome de path esquisito
+- dentro do nosso script de coin.gd vamos importar nosso GameManager com nome unico e rodar dentro de coin.gd nossa função de score
+- dentro do nosso GameManager vamos criar um Label para exibir nosso score
+- entretanto, para transformar em um HUD, devemos usar canvaslayer https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
