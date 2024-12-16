@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://uwp4ltsx4f16"]
+[gd_scene load_steps=20 format=3 uid="uid://uwp4ltsx4f16"]
 
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_lwi5y"]
 [ext_resource type="PackedScene" uid="uid://ewm6xyqd7s0s" path="res://scenes/player.tscn" id="1_sa1ma"]
 [ext_resource type="Texture2D" uid="uid://d0q2g65ahgok" path="res://assets/sprites/world_tileset.png" id="2_l6ka8"]
 [ext_resource type="PackedScene" uid="uid://cnmob3soshnd3" path="res://scenes/platform.tscn" id="3_ldg3y"]
 [ext_resource type="PackedScene" uid="uid://bjd8xmslk375s" path="res://scenes/coin.tscn" id="4_1sdbm"]
 [ext_resource type="PackedScene" uid="uid://0l5ciski3rwq" path="res://scenes/killzone.tscn" id="5_q1pwv"]
 [ext_resource type="PackedScene" uid="uid://ca24kmorbq71e" path="res://scenes/enemy_slime_green.tscn" id="6_rwbgn"]
+[ext_resource type="FontFile" uid="uid://dbjl1e6kdxpl6" path="res://assets/fonts/PixelOperator8.ttf" id="7_ok8vb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ncon"]
 texture = ExtResource("2_l6ka8")
@@ -290,6 +292,20 @@ _data = {
 
 [node name="Game" type="Node2D"]
 
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_lwi5y")
+
+[node name="Score" type="Label" parent="GameManager"]
+offset_left = -90.0
+offset_top = -37.0
+offset_right = -44.0
+offset_bottom = -14.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_ok8vb")
+theme_override_font_sizes/font_size = 8
+text = "Pontos:"
+
 [node name="Player" parent="." instance=ExtResource("1_sa1ma")]
 position = Vector2(49, 46)
 
@@ -371,3 +387,16 @@ autoplay = "plataforma-horizontal"
 
 [node name="Enemy_slime_green" parent="." instance=ExtResource("6_rwbgn")]
 position = Vector2(392, 64)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -105.0
+offset_top = -24.0
+offset_right = 152.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0.117647, 0.321569, 0.172549, 1)
+theme_override_fonts/font = ExtResource("7_ok8vb")
+theme_override_font_sizes/font_size = 8
+text = "A ou <- para mover para esquerda
+S ou -> para mover para a direita
+W ou Space Bar para saltar"
+horizontal_alignment = 1

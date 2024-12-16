@@ -105,7 +105,29 @@
 - trazer da mesma forma o AnimatedSprite2d pois ela tem a propriedade fliph, que faz com que o objeto gire no seu eixo
 
 ## ajustes no player
-- de forma semelhante, pudemos no script do player adicionar o fliph para ele mudar a posição
+- de forma semelhante, pusemos no script do player adicionar o fliph para ele mudar a posição
 - na cena killzone vamos ajustar o script para termos um efeito de morte. 
 - quando a killzone detectar um corpo entrando ela vai alterar as propriedades de tempo, fazendo passar mais devagar. 
 - vamos tb remover a colisão desse body(nosso player) para dar efeito de queda e fazer executar uma animação de morte que criamos no player
+
+## mais ajustes
+- vamos mudar um pouco algumas das ações do player. para isso godot usa o conceito de actions
+- project -> project settings -> input map (mapa de entrada): aqui podemos  cadastrar as ações de personagens
+- vamos adicionar 3 ações: jump, move_left e move_right
+- com as ações cadastradas, ao clicar no botão de `+` de cada ação podemos atribuir uma tecla
+- cadastramos a ação de pular e andar
+- em nosso código, vamos substituir os argumentos dos nossos `Inputs` pelas ações cadastradas
+- no nosso player, em `AnimatedSprite2D` vamos adicionar a animação de correr e pular
+- dentro dos gdScript de killzone e player criamos uma forma adequada de renderizar as animações, sem sobreposição
+- em killzone não mais apagamos a colisão, apenas desabilitamos ela
+
+## Texto
+
+- em godot o texto pode ser inserido pelo nó label. vamos criar um no dentro de label dentro da cena principal
+- no inspetor escrevemos o texto e em control->theme verrides->font & fontsizes podemos importar um fonte e alterar seu tameanho
+- vamos aproveitar para criar nosso score. Scores geralmente são criados dentro de nós específicos, aqui chamados de GameManagers. é simplesmente um nó comum para ter texto e lógica
+- dentro de game manager criamos uma função para somar pontos. 
+- clicando com o direito no no de game manager vamos torna-lo unico "%Acesso nome único", assim quando o importarmos dentro de algum script nçao vai ter um nome de path esquisito
+- dentro do nosso script de coin.gd vamos importar nosso GameManager com nome unico e rodar dentro de coin.gd nossa função de score
+- dentro do nosso GameManager vamos criar um Label para exibir nosso score
+- entretanto, para transformar em um HUD, devemos usar canvaslayer https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
