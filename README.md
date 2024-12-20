@@ -131,3 +131,25 @@
 - dentro do nosso script de coin.gd vamos importar nosso GameManager com nome unico e rodar dentro de coin.gd nossa função de score
 - dentro do nosso GameManager vamos criar um Label para exibir nosso score
 - entretanto, para transformar em um HUD, devemos usar canvaslayer https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
+
+
+## audio
+- para execução do áudio usaremos nós do tipo audiostreamPlayer2d
+- inspetor -> audiostreamPlayer2d -> stream: colocamos nosso arquivo de audio e deixamos marcado loop e autoplay
+- se clicarmos duas vezes no mp3 do FileSystem podemos tocar o audio e fazer alguns ajustes
+- na parte inferior temos um mixer para controlar melhor o audio. 
+- ja temos um cana master e podemos adicionar canais. vamos adicionar 2. um para musica e outro para os efeitos
+- inspetor -> audiostreamPlayer2d -> Bus : escolhemos o canal. assim podemos colocar musica e efeitos com volumes diferentes
+- em music redefinimos para -12db o volume
+- vamos perceber um pequeno problema: a musica quando importada como nó reinicia toda vez que o personagem morre. nao sedejamos isso.
+- removemos o no de musica de nossa cena principal e vamos em projeto -> configurações de projeto -> globals -> autoload e importamos nossa musica por ali
+- agora a musica não reinicia
+- em na cena da moedas, adicionamos o audiostreamPlayer2d e fazemos algo semelhante, mas para moedas, no canl de efeitos
+- se tentarmos fazer audio_stream_player_2d.playing = true no coin.gb o queue_free() vai impedir que o toque aconteca, pois a moeda deixa de existir logo que o som inicia
+
+## exportando
+- editor->gerenciar modelos de exportação
+- baixar e instalar
+- projeto->export->adicionar, marcar embutir pck, aí grava em um só arquivo
+- podemos alterar propriedades como game name, ícone, etc...
+
