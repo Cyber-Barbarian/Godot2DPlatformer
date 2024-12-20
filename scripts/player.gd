@@ -5,4 +5,3 @@ class_name Player
 @export var speed = 100.0
 @export var jump_impulse = -300.0
 @export var gravity := 980.0
->>>>>>> 08-ajustes_finais_e_sons
