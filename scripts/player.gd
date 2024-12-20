@@ -5,10 +5,14 @@ const SPEED = 100.0
 const JUMP_VELOCITY = -250.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var kill_area: Area2D = $killArea
+
 
 func _ready() -> void:
 	animated_sprite_2d.flip_h = false
 	
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -47,3 +51,7 @@ func _physics_process(delta: float) -> void:
 	
 
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	body.queue_free()
