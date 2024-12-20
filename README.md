@@ -131,7 +131,7 @@
 - dentro do nosso script de coin.gd vamos importar nosso GameManager com nome unico e rodar dentro de coin.gd nossa função de score
 - dentro do nosso GameManager vamos criar um Label para exibir nosso score
 - entretanto, para transformar em um HUD, devemos usar canvaslayer https://docs.godotengine.org/en/stable/getting_started/first_2d_game/06.heads_up_display.html
-
+- aproveitamos esses conceitos e criamos um novo nó do tipo canvaslayer  onde colocamos um hud
 
 ## audio
 - para execução do áudio usaremos nós do tipo audiostreamPlayer2d
@@ -152,4 +152,3 @@
 - baixar e instalar
 - projeto->export->adicionar, marcar embutir pck, aí grava em um só arquivo
 - podemos alterar propriedades como game name, ícone, etc...
-
