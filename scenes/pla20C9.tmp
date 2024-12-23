@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://ewm6xyqd7s0s"]
+[gd_scene load_steps=46 format=3 uid="uid://ewm6xyqd7s0s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_16f04"]
 [ext_resource type="Texture2D" uid="uid://b8cmjj8vq3r8d" path="res://assets/sprites/knight.png" id="1_pvsfm"]
 [ext_resource type="Script" path="res://scripts/state_machine/StateMachine.gd" id="3_bq1cy"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/IdleState.gd" id="4_dnv7i"]
+[ext_resource type="Script" path="res://scripts/state_machine/PlayerState.gd" id="5_a4jyh"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/RunningState.gd" id="5_xtub3"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/JumpState.gd" id="6_7vc06"]
 [ext_resource type="Texture2D" uid="uid://bgtuoba3f5fk7" path="res://assets/sprites/sword2.png" id="7_s1op8"]
@@ -514,21 +515,25 @@ shape = SubResource("CircleShape2D_p1w6v")
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_bq1cy")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="PlayerState" type="Node" parent="StateMachine"]
+script = ExtResource("5_a4jyh")
+
+[node name="Idle" type="Node" parent="StateMachine/PlayerState"]
 script = ExtResource("4_dnv7i")
 
-[node name="Running" type="Node" parent="StateMachine"]
+[node name="Running" type="Node" parent="StateMachine/PlayerState"]
 script = ExtResource("5_xtub3")
 
-[node name="Jumping" type="Node" parent="StateMachine"]
+[node name="Jumping" type="Node" parent="StateMachine/PlayerState"]
 script = ExtResource("6_7vc06")
 
-[node name="SwordIdle" type="Node" parent="StateMachine"]
+[node name="SwordIdle" type="Node" parent="StateMachine/PlayerState"]
 script = ExtResource("7_xv2dt")
 
-[node name="Attacking" type="Node" parent="StateMachine"]
+[node name="Attacking" type="Node" parent="StateMachine/PlayerState"]
 script = ExtResource("8_nf5jo")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attacking" method="_on_animation_player_animation_finished"]
-[connection signal="left_movement" from="StateMachine" to="." method="_on_left_movement"]
-[connection signal="right_movement" from="StateMachine" to="." method="_on_right_movement"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/PlayerState/Attacking" method="_on_animation_player_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="left_movement" from="StateMachine" to="StateMachine/PlayerState" method="_on_left_movement"]
+[connection signal="right_movement" from="StateMachine" to="StateMachine/PlayerState" method="_on_right_movement"]

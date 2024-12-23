@@ -1,5 +1,7 @@
 extends Node
 
+
+
 ## The initial state of the state machine. If not set, the first child node is used.
 @export var initial_state: State = null
 
@@ -9,6 +11,11 @@ extends Node
 ).call()
 
 #The states will be children of the state machine. We can use Godot’s find_children() function to get all the states and connect to their finished signal to transition to the next state.
+
+signal left_movement
+signal right_movement
+
+
 
 func _ready() -> void:
 	# Give every state a reference to the state machine.
@@ -40,3 +47,10 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
+
+
+func _input(event):
+	if Input.is_action_just_pressed("move_left"):
+		emit_signal("left_movement")
+	if Input.is_action_just_pressed("move_right"):
+		emit_signal("right_movement")
