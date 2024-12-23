@@ -4,9 +4,11 @@ const IDLE = "Idle"
 const RUNNING = "Running"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
+const ATTACKING = "Attacking"
 
 var player: Player
 
+var  block_other_actions: bool = false
 
 func _ready() -> void:
 	await owner.ready

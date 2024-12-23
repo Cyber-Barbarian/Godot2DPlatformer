@@ -152,4 +152,3 @@
 - baixar e instalar
 - projeto->export->adicionar, marcar embutir pck, aí grava em um só arquivo
 - podemos alterar propriedades como game name, ícone, etc...
-

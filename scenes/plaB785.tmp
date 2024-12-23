@@ -530,5 +530,6 @@ script = ExtResource("7_xv2dt")
 script = ExtResource("8_nf5jo")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attacking" method="_on_animation_player_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="left_movement" from="StateMachine" to="." method="_on_left_movement"]
 [connection signal="right_movement" from="StateMachine" to="." method="_on_right_movement"]

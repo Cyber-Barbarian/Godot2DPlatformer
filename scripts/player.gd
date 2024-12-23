@@ -5,3 +5,15 @@ class_name Player
 @export var speed = 100.0
 @export var jump_impulse = -300.0
 @export var gravity := 980.0
+@onready var animation_player2: AnimationPlayer = $AnimationPlayer
+@export var flipped: bool = false
+
+
+
+func _on_left_movement() -> void:
+	flipped = true
+	animation_player.flip_h = flipped
+
+func _on_right_movement() -> void:
+	flipped = false
+	animation_player.flip_h = flipped
