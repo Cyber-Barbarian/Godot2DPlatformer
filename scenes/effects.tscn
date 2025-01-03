@@ -1,0 +1,121 @@
+[gd_scene load_steps=16 format=3 uid="uid://dg2rpjnl100ck"]
+
+[ext_resource type="Script" path="res://scripts/effects.gd" id="1_jfg7f"]
+[ext_resource type="Shader" uid="uid://b08joh4lyr1vd" path="res://shaders/vertex_shader.tres" id="2_2oyew"]
+[ext_resource type="Texture2D" uid="uid://rteahgunxg53" path="res://icon.svg" id="2_h3now"]
+[ext_resource type="Shader" path="res://shaders/vertex_shader_v2.gdshader" id="4_qidft"]
+[ext_resource type="Shader" path="res://shaders/color_shader.gdshader" id="5_isj6r"]
+[ext_resource type="Shader" path="res://shaders/shadertoy.gdshader" id="6_tpy8k"]
+
+[sub_resource type="Curve" id="Curve_rhw4n"]
+_data = [Vector2(0.0280899, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_17rfo"]
+offsets = PackedFloat32Array(0, 0.533333, 1)
+colors = PackedColorArray(0.92549, 0.152941, 0.247059, 1, 0.913725, 0.521569, 0.215686, 1, 0.909804, 0.823529, 0, 1)
+
+[sub_resource type="Curve" id="Curve_ki8e4"]
+_data = [Vector2(0.0168539, 1), 0.0, 0.0, 0, 0, Vector2(0.949438, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1coid"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.921348, 0.450549), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jx0u1"]
+offsets = PackedFloat32Array(0, 0.493333, 1)
+colors = PackedColorArray(0.219608, 0.34902, 0.701961, 1, 0.211765, 0.772549, 0.956863, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_meti3"]
+shader = ExtResource("2_2oyew")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwmds"]
+shader = ExtResource("4_qidft")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raeva"]
+shader = ExtResource("5_isj6r")
+shader_parameter/size = null
+shader_parameter/blue_value = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7532"]
+shader = ExtResource("6_tpy8k")
+
+[node name="Effects" type="Node2D"]
+script = ExtResource("1_jfg7f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Fire" type="Node" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Fire"]
+emitting = false
+amount = 100
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -600)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_min = 2.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_rhw4n")
+color_ramp = SubResource("Gradient_17rfo")
+
+[node name="Explosion" type="Node" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Explosion"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_ki8e4")
+color = Color(1, 1, 0.972549, 1)
+
+[node name="Rain" type="Node" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Rain"]
+position = Vector2(2, -324)
+emitting = false
+amount = 200
+lifetime = 2.0
+randomness = 0.56
+emission_shape = 3
+emission_rect_extents = Vector2(600, 100)
+particle_flag_align_y = true
+gravity = Vector2(-200, 600)
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_1coid")
+color_ramp = SubResource("Gradient_jx0u1")
+
+[node name="VertexShaders" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="VertexShaders"]
+material = SubResource("ShaderMaterial_meti3")
+position = Vector2(-3, -1)
+texture = ExtResource("2_h3now")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VertexShaders"]
+material = SubResource("ShaderMaterial_dwmds")
+position = Vector2(262, -30)
+texture = ExtResource("2_h3now")
+
+[node name="OtherShaders" type="Node" parent="."]
+
+[node name="ColorShaderSprite2D" type="Sprite2D" parent="OtherShaders"]
+material = SubResource("ShaderMaterial_raeva")
+position = Vector2(-395, -33)
+texture = ExtResource("2_h3now")
+
+[node name="ShadertoyTestSprite2D" type="Sprite2D" parent="OtherShaders"]
+material = SubResource("ShaderMaterial_c7532")
+position = Vector2(255, 206)
+texture = ExtResource("2_h3now")

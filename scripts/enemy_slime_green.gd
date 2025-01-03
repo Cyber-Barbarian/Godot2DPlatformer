@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name enemy
 const enemy = true
 var speed = 60
 var direction = 1
@@ -9,12 +9,15 @@ var direction = 1
 @onready var killzone_enemy: Area2D = $Killzone_enemy
 @onready var timer: Timer = $Timer
 
+func get_class_name(): 
+	return "class_name"
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	move_between_walls(delta)
+	pass
+	#move_between_walls(delta)
 	
 func move_between_walls(delta: float) -> void:
 	if ray_cast_2_ddireita.is_colliding() || ray_cast_2_desquerda.is_colliding():
@@ -25,6 +28,8 @@ func move_between_walls(delta: float) -> void:
 
 
 func _on_killzone_enemy_body_entered(body: Node2D) -> void:
+	if body is attack_area_2d:
+		print("OK")
 	if body is CharacterBody2D:
 		var player = body as CharacterBody2D
 		if player.velocity.y > 0: # Ensure the player is moving downward 

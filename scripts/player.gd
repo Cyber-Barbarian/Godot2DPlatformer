@@ -17,3 +17,7 @@ func _on_left_movement() -> void:
 func _on_right_movement() -> void:
 	flipped = false
 	animation_player.flip_h = flipped
+
+
+func _on_attack_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

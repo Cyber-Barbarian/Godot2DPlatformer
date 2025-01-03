@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=3 uid="uid://ewm6xyqd7s0s"]
+[gd_scene load_steps=46 format=3 uid="uid://ewm6xyqd7s0s"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_16f04"]
 [ext_resource type="Texture2D" uid="uid://b8cmjj8vq3r8d" path="res://assets/sprites/knight.png" id="1_pvsfm"]
+[ext_resource type="Script" path="res://scripts/attack_area_2d.gd" id="3_6mmwu"]
 [ext_resource type="Script" path="res://scripts/state_machine/StateMachine.gd" id="3_bq1cy"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/IdleState.gd" id="4_dnv7i"]
 [ext_resource type="Script" path="res://scripts/state_machine/states/RunningState.gd" id="5_xtub3"]
@@ -12,46 +13,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmt13"]
 size = Vector2(10.6603, 24.6603)
-
-[sub_resource type="Animation" id="Animation_7r1jw"]
-resource_name = "right_sword_idle"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:z_index")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-2.0944, -1.91986]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -5), Vector2(0, -5)]
-}
 
 [sub_resource type="Animation" id="Animation_ggfii"]
 length = 0.001
@@ -102,6 +63,58 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_i1gfm"]
+resource_name = "left_sword_attack"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:z_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.0944, -1.5708, -1.5708, 2.0944]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.0666667, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(-8, -20), Vector2(-12, -5), Vector2(-12, -5), Vector2(0, -5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/AttackArea2D/AttackCollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_6ka8d"]
@@ -196,9 +209,9 @@ tracks/3/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_i1gfm"]
-resource_name = "left_sword_attack"
-length = 0.25
+[sub_resource type="Animation" id="Animation_7r1jw"]
+resource_name = "right_sword_idle"
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -218,10 +231,10 @@ tracks/1/path = NodePath("Sprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [2.0944, -1.5708, -1.5708, 2.0944]
+"values": [-2.0944, -1.91986]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -230,22 +243,10 @@ tracks/2/path = NodePath("Sprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.0666667, 0.166667, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -5), Vector2(-8, -20), Vector2(-12, -5), Vector2(-12, -5), Vector2(0, -5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/AttackArea2D/AttackCollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
+"values": [Vector2(0, -5), Vector2(0, -5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahc74"]
@@ -489,6 +490,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_s1op8")
 
 [node name="AttackArea2D" type="Area2D" parent="Sprite2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_6mmwu")
 
 [node name="AttackCollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackArea2D"]
 position = Vector2(-0.0621748, -2.33013)
@@ -529,6 +533,8 @@ script = ExtResource("7_xv2dt")
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("8_nf5jo")
 
+[connection signal="area_entered" from="Sprite2D/AttackArea2D" to="Sprite2D/AttackArea2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Sprite2D/AttackArea2D" to="Sprite2D/AttackArea2D" method="_on_attack_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attacking" method="_on_animation_player_animation_finished"]
 [connection signal="left_movement" from="StateMachine" to="." method="_on_left_movement"]
 [connection signal="right_movement" from="StateMachine" to="." method="_on_right_movement"]
